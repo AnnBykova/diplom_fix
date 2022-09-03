@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">COOKBOOK</string>
+    <string name="feed">RECIPE</string>
+    <string name="favorite">FAVORITES</string>
+    <string name="add">ADD</string>
+    <string name="recipeFoto">main foto of recipe</string>
+    <string name="name">Название</string>
+    <string name="category">Категория</string>
+    <string name="components">Ингредиенты</string>
+    <string name="cook">Приготовление</string>
+    <string name="author">Автор</string>
+    <string name="category_1">Russian</string>
+    <string name="category_2">European</string>
+    <string name="category_3">Asian</string>
+    <string name="category_4">PanAsian</string>
+    <string name="category_5">Oriental</string>
+    <string name="category_6">American</string>
+    <string name="saveButton">SAVE</string>
+    <string name="remove">Удалить</string>
+    <string name="menu_edit">Редактировать</string>
+    <string name="label_1">Добавить в избранное</string>
+    <string name="categorySelect">Выберите категорию</string>
+    <string name="pictureButton">Добавить фото</string>
+    <string name="search">Поиск</string>
+    <string name="content_description_search">поиск по названию</string>
+    <string name="content_description_favorite">фильтр по категории</string>
+    <string name="photo_of_step">photo of cooking step</string>
+    <string name="cooking_steps">Приготовление</string>
+</resources>
