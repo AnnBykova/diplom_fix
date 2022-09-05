@@ -1,9 +1,8 @@
 package ru.netology.cookbook.db
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 import ru.netology.cookbook.Category
+
 
 @Entity(tableName = "recipes")
 class RecipeEntity(
@@ -11,7 +10,7 @@ class RecipeEntity(
     @PrimaryKey(autoGenerate = true)
 
     @ColumnInfo(name = "id")
-    val id: Int,
+    val id: Long,
 
     @ColumnInfo(name = "name")
     val name: String,
@@ -21,9 +20,6 @@ class RecipeEntity(
 
     @ColumnInfo(name = "components")
     val components: String,
-
-    @ColumnInfo(name = "cooking")
-    val cooking: String,
 
     @ColumnInfo(name = "picture")
     val picture: String,

@@ -1,10 +1,8 @@
 package ru.netology.cookbook.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.net.toUri
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -12,13 +10,13 @@ import ru.netology.cookbook.R
 import ru.netology.cookbook.Recipe
 import ru.netology.cookbook.databinding.RecieptListBinding
 
-class RecipeListAdapter (
-    private val interactionListener: RecipeInteractionListener
-        ) : ListAdapter<Recipe, RecipeListAdapter.ViewHolder>(DiffCallback) {
+class RecipeListAdapter(
+    private val interactionListener: RecipeListInteractionListener
+) : ListAdapter<Recipe, RecipeListAdapter.ViewHolder>(DiffCallback) {
 
     class ViewHolder(
         private val binding: RecieptListBinding,
-        listener: RecipeInteractionListener
+        listener: RecipeListInteractionListener
     ) : RecyclerView.ViewHolder(binding.root) {
 
         private lateinit var recipe: Recipe
@@ -47,18 +45,15 @@ class RecipeListAdapter (
                 textViewRecipeName.text = recipe.name
                 if (recipe.picture != "no") {
                     mainPhoto.setImageURI(recipe.picture.toUri())
-                    }
-                else {
+                } else {
                     mainPhoto.setImageResource(R.drawable.ic_launcher_foreground)
                 }
             }
-            }
         }
-
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        Log.d("ViewHolder", "onCreateViewHolder")
         val inflater = LayoutInflater.from(parent.context)
         //создаем view
         val binding = RecieptListBinding.inflate(
@@ -69,7 +64,6 @@ class RecipeListAdapter (
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 //        метод перезаполняет неиспользуемую вью и подставляет ее
-        Log.d("ViewHolder", "onBindViewHolder")
         val recipe = getItem(position)
         holder.bind(recipe)
 

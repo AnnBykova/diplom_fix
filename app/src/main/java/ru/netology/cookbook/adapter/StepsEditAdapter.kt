@@ -7,25 +7,30 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.cookbook.Steps
-import ru.netology.cookbook.databinding.StepListShowBinding
+import ru.netology.cookbook.databinding.StepsListEditBinding
 
-
-class StepsAdapter(
+class StepsEditAdapter(
     private val interactionListener: SingleRecipeInteractionListener
-) : ListAdapter<Steps, StepsAdapter.StepsViewHolder>(DiffCallback) {
+) : ListAdapter<Steps, StepsEditAdapter.StepsViewHolder>(DiffCallback) {
 
     class StepsViewHolder(
-        private val binding: StepListShowBinding,
+        private val binding: StepsListEditBinding,
         listener: SingleRecipeInteractionListener
     ) : RecyclerView.ViewHolder(binding.root) {
 
         private lateinit var steps: Steps
 
+        init {
+            binding.deleteStep.setOnClickListener {
+                listener.onStepDeleteClicked(steps)
+            }
+        }
+
         fun bind(steps: Steps) {
             this.steps = steps
             with(binding) {
                 stepNumber.text = steps.stepOrder.toString()
-                newStepAdded.text = steps.stepText
+                editStepText.setText(steps.stepText)
             }
         }
     }
@@ -35,7 +40,7 @@ class StepsAdapter(
         Log.d("ViewHolder", "onCreateViewHolder")
         val inflater = LayoutInflater.from(parent.context)
         //создаем view
-        val binding = StepListShowBinding.inflate(
+        val binding = StepsListEditBinding.inflate(
             inflater, parent, false
         )
         return StepsViewHolder(binding, interactionListener)
@@ -60,7 +65,4 @@ class StepsAdapter(
 
     }
 
-    companion object {
-        var stepNumber: Int = 1
-    }
 }

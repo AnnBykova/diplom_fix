@@ -1,14 +1,14 @@
 package ru.netology.cookbook.data
 
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
-import ru.netology.cookbook.Category
 import ru.netology.cookbook.Recipe
 import ru.netology.cookbook.Steps
 import ru.netology.cookbook.db.RecipeDao
 import ru.netology.cookbook.db.toEntity
 import ru.netology.cookbook.db.toModel
-import java.util.*
+
 
 class RecipeRepositoryImpl(
     private val dao: RecipeDao
@@ -22,16 +22,21 @@ class RecipeRepositoryImpl(
         entities.map { it.toModel() }
     }
 
-    override fun like(recipeId: Int) {
+    override fun like(recipeId: Long) {
         dao.likedById(recipeId)
     }
 
-    override fun showFavorites() {
-        TODO("Not yet implemented")
+    override fun delete(id: Long) {
+        dao.removeById(id)
+        dao.removeStepsByRecipeId(id)
     }
 
-    override fun delete(id: Int) {
-        dao.removeById(id)
+    override fun deleteStep(stepId: Long) {
+        dao.removeStepById(stepId)
+    }
+
+    override fun deleteStepsByRecipeId(id: Long) {
+        dao.removeStepsByRecipeId(id)
     }
 
     override fun save(recipe: Recipe) {
@@ -48,16 +53,22 @@ class RecipeRepositoryImpl(
         }
     }
 
-    override fun saveRecipe(recipe: Recipe, steps: List<Steps>) {
-        val id : Long = dao.insert(recipe.toEntity())
-       dao.insertSteps(steps.map { it.copy(recipeId = id) }
-           .map{it.toEntity()})
-
-
-
-
-
-
+    override fun saveRecipe(recipe: Recipe) {
+        val id: Long = dao.insert(recipe.toEntity())
+        val steps = recipe.cooking
+        dao.removeStepsByRecipeId(-1L)
+        dao.insertSteps(steps.map { it.copy(recipeId = id) }.map { it.toEntity() })
     }
+
+    override fun insertNewStep(step: Steps) {
+        dao.insertNewStep(step.toEntity())
+    }
+
+    override fun getStepsByRecipeId(recipeId: Long): List<Steps> {
+        return dao.getStepsByRecipeId(recipeId).map { entities ->
+            entities.toModel()
+        }
+    }
+
 
 }

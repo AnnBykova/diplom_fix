@@ -8,13 +8,7 @@ import androidx.room.PrimaryKey
 import ru.netology.cookbook.Category
 import ru.netology.cookbook.Recipe
 
-@Entity(tableName = "steps", foreignKeys = [ForeignKey(
-    entity = RecipeEntity::class,
-    parentColumns = arrayOf("id"),
-    childColumns = arrayOf("userId"),
-    onDelete = CASCADE
-)]
-)
+@Entity(tableName = "steps")
 class StepsEntity (
 
     @PrimaryKey(autoGenerate = true)

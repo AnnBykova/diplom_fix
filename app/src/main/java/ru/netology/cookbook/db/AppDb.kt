@@ -6,10 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [RecipeEntity :: class, StepsEntity :: class],
-    version = 2
+    entities = [RecipeEntity::class, StepsEntity::class],
+    version = 1
 )
-abstract class AppDb : RoomDatabase(){
+abstract class AppDb : RoomDatabase() {
     abstract val recipeDao: RecipeDao
 
     companion object {
@@ -25,7 +25,7 @@ abstract class AppDb : RoomDatabase(){
 
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(
-                context, AppDb ::class.java, "app.db"
+                context, AppDb::class.java, "app.db"
             ).allowMainThreadQueries()
                 .build()
     }

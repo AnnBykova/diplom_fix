@@ -1,5 +1,6 @@
 package ru.netology.cookbook.db
 
+import androidx.room.TypeConverter
 import ru.netology.cookbook.Recipe
 import ru.netology.cookbook.Steps
 
@@ -8,7 +9,7 @@ fun RecipeEntity.toModel() = Recipe(
     name = name,
     author = author,
     components = components,
-    cooking = cooking,
+    cooking = listOf(Steps (0L, 1,"",0L)),
     picture = picture,
     category = category,
     isLiked = isLiked
@@ -19,7 +20,6 @@ fun Recipe.toEntity() = ru.netology.cookbook.db.RecipeEntity(
     name = name,
     author = author,
     components = components,
-    cooking = cooking,
     picture = picture,
     category = category,
     isLiked = isLiked

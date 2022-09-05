@@ -9,25 +9,24 @@ interface RecipeRepository {
 
     val dataSteps: LiveData<List<Steps>>
 
-    fun like(recipeId: Int)
 
-    fun showFavorites()
+    fun like(recipeId: Long)
 
-    fun delete (recipeId: Int)
+    fun delete(recipeId: Long)
 
-    fun save (recipe: Recipe)
+    fun save(recipe: Recipe)
 
-    fun update (recipe: Recipe)
+    fun update(recipe: Recipe)
 
-    fun searchDataBase (query: String) : LiveData <List<Recipe>>
+    fun searchDataBase(query: String): LiveData<List<Recipe>>
 
-    fun saveRecipe (recipe: Recipe, steps: List<Steps>)
+    fun saveRecipe(recipe: Recipe)
 
+    fun insertNewStep(step: Steps)
 
+    fun deleteStepsByRecipeId(recipeId: Long)
 
+    fun deleteStep(stepId: Long)
 
-
-    companion object{
-        const val NEW_COOK_ID = 0
-    }
+    fun getStepsByRecipeId(recipeId: Long): List<Steps>
 }

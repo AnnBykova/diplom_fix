@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
     >
 
     <ImageView
@@ -76,15 +81,26 @@
         tools:text="Сахар, соль, мука, яйца" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/textViewCook"
-        android:layout_width="match_parent"
+        android:id="@+id/textViewSteps"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/fab_margin"
         android:layout_marginEnd="@dimen/fab_margin"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="28dp"
+        android:text="@string/cooking_steps"
         app:layout_constraintTop_toBottomOf="@id/textViewIngredients"
-        tools:text="Все смешать и выпекать на сковороде" />
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/stepsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSteps"
+        tools:listitem="@layout/step_list_show" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/like"
@@ -93,6 +109,7 @@
         android:checkable="true"
         android:text="@string/label_1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewCook" />
+        app:layout_constraintTop_toBottomOf="@+id/stepsRecyclerView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
