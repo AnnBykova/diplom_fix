@@ -29,4 +29,6 @@ interface RecipeRepository {
     fun deleteStep(stepId: Long)
 
     fun getStepsByRecipeId(recipeId: Long): List<Steps>
+
+    fun getLastStepOrder(recipeId: Long): Int
 }

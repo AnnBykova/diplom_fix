@@ -3,6 +3,7 @@ package ru.netology.cookbook.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.ActionBar
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -24,6 +25,7 @@ class AppActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         findViewById<BottomNavigationView>(R.id.bottom_nav)
             .setupWithNavController(navController)
+
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if(destination.id == R.id.fragment_feed || destination.id == R.id.fragment_favorite|| destination.id == R.id.fragment_add ) {

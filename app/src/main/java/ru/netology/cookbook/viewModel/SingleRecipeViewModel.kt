@@ -2,10 +2,8 @@ package ru.netology.cookbook.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import ru.netology.cookbook.Recipe
 import ru.netology.cookbook.Steps
-import ru.netology.cookbook.adapter.RecipeListInteractionListener
 import ru.netology.cookbook.adapter.SingleRecipeInteractionListener
 import ru.netology.cookbook.adapter.StepsAdapter.Companion.stepNumber
 import ru.netology.cookbook.data.RecipeRepository
@@ -73,10 +71,15 @@ class SingleRecipeViewModel(
 
     fun clearSteps(recipeId: Long) {
         repository.deleteStepsByRecipeId(recipeId)
+        stepNumber=1
     }
 
     fun getStepsByRecipeId(recipeId: Long): List<Steps> {
         return repository.getStepsByRecipeId(recipeId)
+    }
+
+    fun getLastStepOrder (recipeId: Long): Int {
+        return repository.getLastStepOrder(recipeId)
     }
 
 }

@@ -75,7 +75,7 @@ class EditFragment : Fragment() {
         binding.fragmentEdit.addStep.setOnClickListener {
             val text = binding.fragmentEdit.newStep.text.toString()
             val recipeId = arguments?.longArg ?: 0L
-            val numberOfStep = arguments?.intArg ?: 0
+            val numberOfStep = viewModelSingle.getLastStepOrder(recipeId)
             val newStep = Steps(0L, (numberOfStep + 1), text, recipeId)
             viewModelSingle.onAddStepEditClicked(newStep)
             binding.fragmentEdit.newStep.setText("")

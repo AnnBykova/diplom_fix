@@ -70,5 +70,9 @@ class RecipeRepositoryImpl(
         }
     }
 
+    override fun getLastStepOrder(recipeId: Long): Int{
+        return dao.getLastStepOrder(recipeId)
+    }
+
 
 }

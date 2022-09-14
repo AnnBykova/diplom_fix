@@ -53,6 +53,9 @@ interface RecipeDao {
     @Query("SELECT * FROM steps ORDER BY stepOrder DESC")
     fun getAllSteps(): LiveData<List<StepsEntity>>
 
+    @Query("SELECT MAX (stepOrder) FROM steps  WHERE recipeId = :recipeId")
+    fun getLastStepOrder(recipeId:Long): Int
+
 
 
 

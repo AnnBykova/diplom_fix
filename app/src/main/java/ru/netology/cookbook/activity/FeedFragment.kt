@@ -2,7 +2,7 @@ package ru.netology.cookbook.activity
 
 import android.os.Bundle
 import android.view.*
-import android.widget.SearchView
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -72,10 +72,6 @@ class FeedFragment : Fragment() {
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
-                    R.id.filter -> {
-                        //сделать фильтр по категориям
-                        true
-                    }
                     R.id.search -> {
                         true
                     }
